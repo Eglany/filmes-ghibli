@@ -10,6 +10,7 @@ export default function CardFilm({ props }) {
   const {
     id, movie_banner: movieBanner, title, original_title: originalTitle,
   } = props;
+
   return (
     <Card id={id} sx={{ width: '35vh', my: '3vh' }}>
       <CardActionArea sx={{ height: '100%' }}>
