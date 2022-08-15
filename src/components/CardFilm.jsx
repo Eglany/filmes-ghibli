@@ -5,15 +5,23 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { CardActionArea } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-export default function CardFilm({ props }) {
+export default function CardFilm({ props: films }) {
   const {
     id, movie_banner: movieBanner, title, original_title: originalTitle,
-  } = props;
+  } = films;
+
+  const navigate = useNavigate();
+
+  const handleCLick = () => {
+    console.log(id, title);
+    navigate(`/film/${title}`, { params: { id } });
+  };
 
   return (
     <Card id={id} sx={{ width: '35vh', my: '3vh' }}>
-      <CardActionArea sx={{ height: '100%' }}>
+      <CardActionArea sx={{ height: '100%' }} onClick={handleCLick}>
         <CardMedia
           component="img"
           height="140"
@@ -34,11 +42,11 @@ export default function CardFilm({ props }) {
 }
 
 CardFilm.propTypes = {
-  props: PropTypes.objectOf(
-    PropTypes.string,
-  ).isRequired,
-  id: PropTypes.string.isRequired,
-  movie_banner: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  original_title: PropTypes.string.isRequired,
+  props: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    movie_banner: PropTypes.string,
+    title: PropTypes.string,
+    original_title: PropTypes.string,
+  })).isRequired,
+
 };

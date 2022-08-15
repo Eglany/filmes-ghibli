@@ -7,14 +7,8 @@ import fetchGhibli from '../utils/fetchAPI';
 export default function Home() {
   const [films, setFilms] = useState([]);
 
-  const ghibliAPI = async () => {
-    const fetch = await fetchGhibli('films');
-    const data = await fetch.json();
-    setFilms(data);
-  };
-
   useEffect(() => {
-    ghibliAPI();
+    fetchGhibli('films').then((data) => setFilms(data));
   }, []);
 
   return (
