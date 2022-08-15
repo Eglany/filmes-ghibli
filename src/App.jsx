@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Films from './page/Films';
+import Header from './components/Header';
+import Home from './page/Home';
 
 function App() {
   return (
     <main>
-      <Films />
+      <Header />
+      <Home />
     </main>
   );
 }
