@@ -1,7 +1,6 @@
 import { Container } from '@mui/system';
 import React, { useState, useEffect } from 'react';
 import CardFilm from '../components/CardFilm';
-import Header from '../components/Header';
 import fetchGhibli from '../utils/fetchAPI';
 
 export default function Home() {
@@ -12,13 +11,10 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <Container sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }} disableGutters>
-        {films.map((film) => (
-          <CardFilm key={film.id} props={film} />
-        ))}
-      </Container>
-    </>
+    <Container sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }} disableGutters>
+      {films.map((film) => (
+        <CardFilm key={film.id} props={film} />
+      ))}
+    </Container>
   );
 }

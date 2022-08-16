@@ -6,17 +6,17 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import replaceWhiteSpace from '../utils/replaceWhiteSpace';
 
 export default function CardFilm({ props: films }) {
   const {
-    id, movie_banner: movieBanner, title, original_title: originalTitle,
+    id, image, title, original_title: originalTitle,
   } = films;
 
   const navigate = useNavigate();
 
   const handleCLick = () => {
-    console.log(id, title);
-    navigate(`/film/${title}`, { params: { id } });
+    navigate(`/film/${replaceWhiteSpace(title)}`, { state: { id } });
   };
 
   return (
@@ -24,8 +24,8 @@ export default function CardFilm({ props: films }) {
       <CardActionArea sx={{ height: '100%' }} onClick={handleCLick}>
         <CardMedia
           component="img"
-          height="140"
-          image={movieBanner}
+          height="auto"
+          image={image}
           alt={title}
         />
         <CardContent>
@@ -42,9 +42,9 @@ export default function CardFilm({ props: films }) {
 }
 
 CardFilm.propTypes = {
-  props: PropTypes.arrayOf(PropTypes.shape({
+  props: PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.string,
-    movie_banner: PropTypes.string,
+    image: PropTypes.string,
     title: PropTypes.string,
     original_title: PropTypes.string,
   })).isRequired,
