@@ -1,3 +1,3 @@
-const replaceWhiteSpace = (string) => string.replaceAll(' ', '-');
+const replaceWhiteSpace = (string) => string.replaceAll(' ', '-').toLowerCase();
 
 export default replaceWhiteSpace;
